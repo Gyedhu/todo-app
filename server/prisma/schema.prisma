@@ -25,6 +25,6 @@ model Todo {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
   updatedAt DateTime @updatedAt
-  userId    User     @relation(fields: [userIdId], references: [id])
-  userIdId  String
+  userId    User?    @relation(fields: [userIdId], references: [id])
+  userIdId  String?
 }

@@ -11,7 +11,13 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsString, IsDate, ValidateNested } from "class-validator";
+import {
+  IsBoolean,
+  IsString,
+  IsDate,
+  ValidateNested,
+  IsOptional,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
 @ObjectType()
@@ -57,11 +63,12 @@ class Todo {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
-  userId?: User;
+  @IsOptional()
+  userId?: User | null;
 }
 export { Todo };

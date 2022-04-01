@@ -73,9 +73,11 @@ export class TodoControllerBase {
       data: {
         ...data,
 
-        userId: {
-          connect: data.userId,
-        },
+        userId: data.userId
+          ? {
+              connect: data.userId,
+            }
+          : undefined,
       },
       select: {
         completed: true,
@@ -230,9 +232,11 @@ export class TodoControllerBase {
         data: {
           ...data,
 
-          userId: {
-            connect: data.userId,
-          },
+          userId: data.userId
+            ? {
+                connect: data.userId,
+              }
+            : undefined,
         },
         select: {
           completed: true,

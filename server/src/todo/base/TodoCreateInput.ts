@@ -11,7 +11,12 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsString, ValidateNested } from "class-validator";
+import {
+  IsBoolean,
+  IsString,
+  ValidateNested,
+  IsOptional,
+} from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { Type } from "class-transformer";
 @InputType()
@@ -33,12 +38,15 @@ class TodoCreateInput {
   content!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput)
-  userId!: UserWhereUniqueInput;
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  userId?: UserWhereUniqueInput | null;
 }
 export { TodoCreateInput };

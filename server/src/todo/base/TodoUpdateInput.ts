@@ -53,6 +53,6 @@ class TodoUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  userId?: UserWhereUniqueInput;
+  userId?: UserWhereUniqueInput | null;
 }
 export { TodoUpdateInput };
