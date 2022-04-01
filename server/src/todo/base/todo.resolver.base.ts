@@ -135,9 +135,11 @@ export class TodoResolverBase {
       data: {
         ...args.data,
 
-        userId: {
-          connect: args.data.userId,
-        },
+        userId: args.data.userId
+          ? {
+              connect: args.data.userId,
+            }
+          : undefined,
       },
     });
   }
@@ -180,9 +182,11 @@ export class TodoResolverBase {
         data: {
           ...args.data,
 
-          userId: {
-            connect: args.data.userId,
-          },
+          userId: args.data.userId
+            ? {
+                connect: args.data.userId,
+              }
+            : undefined,
         },
       });
     } catch (error) {
