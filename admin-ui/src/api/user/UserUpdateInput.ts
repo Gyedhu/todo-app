@@ -5,6 +5,6 @@ export type UserUpdateInput = {
   lastName?: string | null;
   password?: string;
   roles?: Array<string>;
-  todo?: TodoWhereUniqueInput | null;
+  todo?: TodoWhereUniqueInput;
   username?: string;
 };

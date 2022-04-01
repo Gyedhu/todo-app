@@ -32,7 +32,7 @@ const App = (): React.ReactElement => {
   return (
     <div className="App">
       <Admin
-        title={"My app-1"}
+        title={"todo-app"}
         dataProvider={dataProvider}
         authProvider={jwtAuthProvider}
         theme={theme}

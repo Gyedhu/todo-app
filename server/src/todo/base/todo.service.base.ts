@@ -47,14 +47,11 @@ export class TodoServiceBase {
     return this.prisma.todo.delete(args);
   }
 
-  async findUserId(
-    parentId: string,
-    args: Prisma.UserFindManyArgs
-  ): Promise<User[]> {
+  async getUserId(parentId: string): Promise<User | null> {
     return this.prisma.todo
       .findUnique({
         where: { id: parentId },
       })
-      .userId(args);
+      .userId();
   }
 }

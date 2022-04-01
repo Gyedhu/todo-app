@@ -14,8 +14,7 @@ model User {
   lastName  String?
   password  String
   roles     String[]
-  todo      Todo?    @relation(fields: [todoId], references: [id])
-  todoId    String?
+  todo      Todo
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
@@ -26,5 +25,6 @@ model Todo {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
   updatedAt DateTime @updatedAt
-  userId    User[]
+  userId    User     @relation(fields: [userIdId], references: [id])
+  userIdId  String
 }
