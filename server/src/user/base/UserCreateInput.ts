@@ -66,7 +66,7 @@ class UserCreateInput {
   @Field(() => TodoWhereUniqueInput, {
     nullable: true,
   })
-  todo?: TodoWhereUniqueInput | null;
+  todo?: TodoWhereUniqueInput;
 
   @ApiProperty({
     required: true,

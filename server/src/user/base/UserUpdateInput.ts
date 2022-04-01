@@ -72,7 +72,7 @@ class UserUpdateInput {
   @Field(() => TodoWhereUniqueInput, {
     nullable: true,
   })
-  todo?: TodoWhereUniqueInput | null;
+  todo?: TodoWhereUniqueInput;
 
   @ApiProperty({
     required: false,

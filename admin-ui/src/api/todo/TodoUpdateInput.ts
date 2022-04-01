@@ -1,7 +1,7 @@
-import { UserUpdateManyWithoutTodosInput } from "./UserUpdateManyWithoutTodosInput";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type TodoUpdateInput = {
   completed?: boolean;
   content?: string;
-  userId?: UserUpdateManyWithoutTodosInput;
+  userId?: UserWhereUniqueInput;
 };

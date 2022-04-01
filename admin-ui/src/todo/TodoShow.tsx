@@ -7,12 +7,10 @@ import {
   BooleanField,
   TextField,
   DateField,
-  ReferenceManyField,
-  Datagrid,
   ReferenceField,
 } from "react-admin";
 
-import { TODO_TITLE_FIELD } from "./TodoTitle";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const TodoShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -23,20 +21,9 @@ export const TodoShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <DateField source="updatedAt" label="Updated At" />
-        <ReferenceManyField reference="User" target="TodoId" label="Users">
-          <Datagrid rowClick="show">
-            <DateField source="createdAt" label="Created At" />
-            <TextField label="First Name" source="firstName" />
-            <TextField label="ID" source="id" />
-            <TextField label="Last Name" source="lastName" />
-            <TextField label="Roles" source="roles" />
-            <ReferenceField label="todo" source="todo.id" reference="Todo">
-              <TextField source={TODO_TITLE_FIELD} />
-            </ReferenceField>
-            <DateField source="updatedAt" label="Updated At" />
-            <TextField label="Username" source="username" />
-          </Datagrid>
-        </ReferenceManyField>
+        <ReferenceField label="user_id" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
       </SimpleShowLayout>
     </Show>
   );

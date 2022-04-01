@@ -71,7 +71,7 @@ class User {
   @ValidateNested()
   @Type(() => Todo)
   @IsOptional()
-  todo?: Todo | null;
+  todo?: Todo;
 
   @ApiProperty({
     required: true,

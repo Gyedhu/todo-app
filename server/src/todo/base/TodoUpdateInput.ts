@@ -17,7 +17,7 @@ import {
   IsString,
   ValidateNested,
 } from "class-validator";
-import { UserUpdateManyWithoutTodosInput } from "./UserUpdateManyWithoutTodosInput";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { Type } from "class-transformer";
 @InputType()
 class TodoUpdateInput {
@@ -45,14 +45,14 @@ class TodoUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserUpdateManyWithoutTodosInput,
+    type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => UserUpdateManyWithoutTodosInput)
+  @Type(() => UserWhereUniqueInput)
   @IsOptional()
-  @Field(() => UserUpdateManyWithoutTodosInput, {
+  @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  userId?: UserUpdateManyWithoutTodosInput;
+  userId?: UserWhereUniqueInput;
 }
 export { TodoUpdateInput };

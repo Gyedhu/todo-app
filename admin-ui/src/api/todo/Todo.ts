@@ -6,5 +6,5 @@ export type Todo = {
   createdAt: Date;
   id: string;
   updatedAt: Date;
-  userId?: Array<User>;
+  userId?: User;
 };

@@ -6,7 +6,7 @@ export type User = {
   id: string;
   lastName: string | null;
   roles: Array<string>;
-  todo?: Todo | null;
+  todo?: Todo;
   updatedAt: Date;
   username: string;
 };

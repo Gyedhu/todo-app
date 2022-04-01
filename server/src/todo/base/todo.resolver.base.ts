@@ -25,7 +25,6 @@ import { DeleteTodoArgs } from "./DeleteTodoArgs";
 import { TodoFindManyArgs } from "./TodoFindManyArgs";
 import { TodoFindUniqueArgs } from "./TodoFindUniqueArgs";
 import { Todo } from "./Todo";
-import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
 import { User } from "../../user/base/User";
 import { TodoService } from "../todo.service";
 
@@ -133,7 +132,13 @@ export class TodoResolverBase {
     // @ts-ignore
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        userId: {
+          connect: args.data.userId,
+        },
+      },
     });
   }
 
@@ -172,7 +177,13 @@ export class TodoResolverBase {
       // @ts-ignore
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          userId: {
+            connect: args.data.userId,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -204,7 +215,7 @@ export class TodoResolverBase {
     }
   }
 
-  @graphql.ResolveField(() => [User])
+  @graphql.ResolveField(() => User, { nullable: true })
   @nestAccessControl.UseRoles({
     resource: "Todo",
     action: "read",
@@ -212,21 +223,19 @@ export class TodoResolverBase {
   })
   async userId(
     @graphql.Parent() parent: Todo,
-    @graphql.Args() args: UserFindManyArgs,
     @gqlUserRoles.UserRoles() userRoles: string[]
-  ): Promise<User[]> {
+  ): Promise<User | null> {
     const permission = this.rolesBuilder.permission({
       role: userRoles,
       action: "read",
       possession: "any",
       resource: "User",
     });
-    const results = await this.service.findUserId(parent.id, args);
+    const result = await this.service.getUserId(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results.map((result) => permission.filter(result));
+    return permission.filter(result);
   }
 }

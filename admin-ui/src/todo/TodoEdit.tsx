@@ -6,8 +6,8 @@ import {
   EditProps,
   BooleanInput,
   TextInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -18,14 +18,9 @@ export const TodoEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <BooleanInput label="completed" source="completed" />
         <TextInput label="content" multiline source="content" />
-        <ReferenceArrayInput
-          source="userId"
-          reference="User"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={UserTitle} />
-        </ReferenceArrayInput>
+        <ReferenceInput source="user.id" reference="User" label="user_id">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );
